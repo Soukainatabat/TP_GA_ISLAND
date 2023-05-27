@@ -10,7 +10,7 @@ public class MainContainer {
     public static void main(String[] args) throws ControllerException {
         Runtime runtime = Runtime.instance();
         ProfileImpl profile = new ProfileImpl();
-        profile.setParameter(Profile.MAIN_PORT,"8989");
+       // profile.setParameter(Profile.MAIN_PORT,"8989");
         profile.setParameter(Profile.GUI,"true");
         AgentContainer mainContainer = runtime.createMainContainer(profile);
         mainContainer.start();

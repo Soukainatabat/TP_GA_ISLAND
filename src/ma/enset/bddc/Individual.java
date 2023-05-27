@@ -2,18 +2,18 @@ package ma.enset.bddc;
 import java.util.Random;
 
 public class Individual implements Comparable {
-    private char [] chromosome = new char[GAUtils.CHROMOSOME_SIZE];
+    private int [] chromosome = new int[GAUtils.CHROMOSOME_SIZE];
     private double fitness ;
 
     public Individual() {
         Random random=new Random();
         for (int i = 0; i < GAUtils.CHROMOSOME_SIZE; i++) {
-            chromosome[i]=GAUtils.ALPHABET.charAt(random.nextInt(GAUtils.ALPHABET.length()));
+            chromosome[i]= random.nextInt(2);
 
         }
     }
 
-    public Individual(char[] chromosome) {
+    public Individual(int[] chromosome) {
         this.chromosome = chromosome;
     }
 
@@ -29,12 +29,12 @@ public class Individual implements Comparable {
         int count = 0;
 
         for (int i = 0; i < GAUtils.TARGET_PHRASE.length(); i++) {
-            if (chromosome[i] == GAUtils.TARGET_PHRASE.charAt(i)) {
-                count++;
+            if (chromosome[i] == 1) {
+                fitness++;
             }
         }
 
-        fitness+= (double) count / GAUtils.TARGET_PHRASE.length();
+
 
     }
 
@@ -42,7 +42,7 @@ public class Individual implements Comparable {
         return fitness;
     }
 
-    public char[] getChromosome() {
+    public int[] getChromosome() {
         return chromosome;
     }
 
@@ -52,7 +52,7 @@ public class Individual implements Comparable {
         return Double.compare(this.fitness, individual.fitness);
     }
 
-    public void setChromosome(char[] chromosome) {
+    public void setChromosome(int[] chromosome) {
         this.chromosome = chromosome;
     }
 

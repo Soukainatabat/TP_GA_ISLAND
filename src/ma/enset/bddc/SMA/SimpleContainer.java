@@ -16,12 +16,13 @@ public class SimpleContainer {
         ProfileImpl profile=new ProfileImpl();
         profile.setParameter(Profile.MAIN_HOST,"localhost");
         AgentContainer agentContainer=runtime.createAgentContainer(profile);
+        AgentController masteragent = agentContainer.createNewAgent("masteragent", MasterAgent.class.getName(), new Object[]{});
+        masteragent.start();
         for (int i = 0; i < GAUtils.ISLAND_NUMBER; i++) {
             AgentController islandAgent = agentContainer.createNewAgent("IslandAgent"+i,IslandAgent.class.getName(),new Object[]{});
             islandAgent.start();
         }
-        AgentController masteragent = agentContainer.createNewAgent("masteragent", MasterAgent.class.getName(), new Object[]{});
-        masteragent.start();
+
      }
 
 }
